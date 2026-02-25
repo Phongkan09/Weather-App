@@ -11,7 +11,14 @@ const quoteAuthor = document.getElementById('quoteAuthor');
 let URL1 = "https://api.openweathermap.org/data/2.5/weather?q=ชื่อเมืองที่จะหา&appid=4905c6bcc4489d3b76202ffe8b17b224&units=metric&lang=th"
 let URL2 = "https://dummyjson.com/quotes/random"
 
+let city = localStorage.getItem('myCity')
+function renderLocation() {
+    cityText.value = city
+    return getweatherAPI();
+}
 const getweatherAPI = async () => {
+    localStorage.setItem('myCity', cityText.value);
+
     URL1 = `https://api.openweathermap.org/data/2.5/weather?q=${cityText.value}&appid=4905c6bcc4489d3b76202ffe8b17b224&units=metric&lang=th`
     console.log(URL1);
     console.log(URL2);
@@ -34,3 +41,4 @@ const getweatherAPI = async () => {
     }
 }
 btn.addEventListener('click', getweatherAPI);
+renderLocation();
